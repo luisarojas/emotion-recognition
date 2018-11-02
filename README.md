@@ -6,5 +6,11 @@
 * [Face Detection using Haar Cascades
 ](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_objdetect/py_face_detection/py_face_detection.html)
 
-### Dataset
-Acquired from [this](https://github.com/muxspace/facial_expressions) public GitHub repository.
+### Dataset Options
+
+* Emotions:
+    * [This](https://github.com/muxspace/facial_expressions) public GitHub repository.
+    * And [this](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data) Kaggle competition.
+
+* Gender:
+    * [Here](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/), "Download faces only (7 GB)" under IMDB.
