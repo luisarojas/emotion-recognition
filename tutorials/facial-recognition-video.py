@@ -4,7 +4,7 @@ import sys
 # get user-supplied image
 # imagePath = sys.argv[1]
 # cascPath = sys.argv[2]
-FACE_CASCADE_PATH = "haarcascade_frontalface_default.xml"
+FACE_CASCADE_PATH = "./res/opencv/casc/haarcascade_frontalface_default.xml"
 
 # create haar cascade from xml file
 face_cascade = cv2.CascadeClassifier(FACE_CASCADE_PATH)
