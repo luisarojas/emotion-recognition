@@ -12,4 +12,4 @@ test:
 	@docker run -it --rm -v $(DATA_PATH):/data -v $(PWD):/home/work -w /home/work $(DOCKER_IMAGE) /bin/bash
 
 docker-build:
-	docker build -t $(DOCKER_IMAGE) .
+	docker build -t $(DOCKER_IMAGE) ./res/docker/
