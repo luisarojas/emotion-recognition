@@ -1,23 +1,33 @@
-FILE=src/run-emotion.py
+FILE=./src/run.py
+DATA=/tmp/data/
 DOCKER_IMAGE=keras-opencv:latest
-DATA_PATH=/home/alex/Downloads/data
 
 run:
 	@docker run -it --rm \
-	-v $(DATA_PATH):/data \
-	-v $(PWD):/home/work \
-	-w /home/work \
-	--device=/dev/video0 \
-	-e DISPLAY=$(DISPLAY) \
-	-v /tmp/.X11-unix:/tmp/.X11-unix \
-	$(DOCKER_IMAGE) \
-	python $(FILE)
+	-v $(DATA):/data \ # volume path
+	-v $(PWD):/home/work \ # current work
+	-w /home/work \ # setting home directory ("WORKDIR")
+	--device=/dev/video0 \ # mount web camera device
+	-e DISPLAY=$(DISPLAY) \ # ability to display, from host to container
+	-v /tmp/.X11-unix:/tmp/.X11-unix \ # file needed for display
+	$(DOCKER_IMAGE) \ # name of image to create container from
+	python $(FILE) # run the main python script
 
 jupyter:
-	@docker run -it --rm -v $(DATA_PATH):/data -v $(PWD):/home/work -w /home/work $(DOCKER_IMAGE)
+	@docker run -it --rm \
+	-v $(DATA):/data \
+	-v $(PWD):/home/work \
+	-w /home/work $(DOCKER_IMAGE)
 
 test:
-	@docker run -it --rm -v $(DATA_PATH):/data -v $(PWD):/home/work -w /home/work $(DOCKER_IMAGE) /bin/bash
+	@docker run -it --rm \
+	-v $(DATA):/data \
+	-v $(PWD):/home/work \
+	-w /home/work \
+	$(DOCKER_IMAGE)\
+	/bin/bash
 
 build:
-	docker build -t $(DOCKER_IMAGE) -f ./res/docker/Docker-base ./res/docker/
+	docker build -t $(DOCKER_IMAGE) \
+	-f ./res/docker/Docker-base \
+	./res/docker/
