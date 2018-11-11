@@ -67,11 +67,11 @@ if __name__ == "__main__":
             gray_face = np.expand_dims(gray_face, -1)
 
             # classify current face
-            # get percentages for each label
-            emotion_label_arg = np.argmax(emotion_classifier.predict(gray_face))
+            emotion_prediciton = emotion_classifier.predict(gray_face)
 
-            # get label text corresponding to the number returned by the model
-            emotion_text = EMOTION_LABELS[emotion_label_arg]
+            # get percentages for each label
+            emotion_label_arg = np.argmax(emotion_prediciton)
+            emotion_percentage = np.max(emotion_prediciton)
 
             # draw box around face
             box_color = (255, 0, 0)
@@ -79,9 +79,12 @@ if __name__ == "__main__":
                 cv2.rectangle(frame, (x, y), (x+w, y+h), box_color, 2)
 
             # draw text around face
+            # get label text corresponding to the number returned by the model
+            emotion_percentage_text = "{:.0f}%".format(emotion_percentage * 100)
+            emotion_text = EMOTION_LABELS[emotion_label_arg] + " " + emotion_percentage_text
             text_color = (0, 255, 0)
             x, y = face_coords[:2]
-            font_scale = 2
+            font_scale = 1
             thickness = 2
             # draw_text(face_coords, frame, emotion_text, 0, -20, 1, 2)
             cv2.putText(frame, emotion_text, (x + emotion_offsets[0], y + emotion_offsets[1]), font, font_scale, text_color, thickness, cv2.LINE_AA)
