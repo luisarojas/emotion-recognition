@@ -44,7 +44,6 @@ test:
 	docker run --rm -it \
 	-v $(PWD):/home/work \
 	-w /home/work \
-	--device=/dev/video0 \
 	-e DISPLAY=$(DISPLAY) \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	valian/docker-python-opencv-ffmpeg \

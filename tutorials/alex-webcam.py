@@ -24,13 +24,16 @@ def simple_facedetect():
     cv2.waitKey(0)
 
 def webcam_facedetect():
-    cascade_face = cv2.CascadeClassifier(casc_path)
 
+    cascade_face = cv2.CascadeClassifier(casc_path)
     video_capture = cv2.VideoCapture(0)
 
     while True:
-        #Capture frame by frame
-        ret,frame = video_capture.read()
+        # capture frame by frame
+        ret, frame = video_capture.read()
+        if not ret:
+            print("Error: cv2.VideoCapture(0).read()")
+            return
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -53,16 +56,16 @@ def webcam_facedetect():
             break
     #Release resources on completion
     video_capture.release()
-    # cv2.DestroyAllWindows()     
-    
-        
+    # cv2.DestroyAllWindows()
+
+
 
 if __name__ == "__main__":
     print("---------FACE DETECTION WITH OPENCV---------")
-    
+
     img_path = "./res/img/abba.png"
     casc_path = "./res/opencv/casc/haarcascade_frontalface_default.xml"
 
     # simple_facedetect()
     webcam_facedetect()
-    
+

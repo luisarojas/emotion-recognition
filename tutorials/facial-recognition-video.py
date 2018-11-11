@@ -4,10 +4,10 @@ import sys
 # get user-supplied image
 # imagePath = sys.argv[1]
 # cascPath = sys.argv[2]
-face_cascade_path = "haarcascade_frontalface_default.xml"
+FACE_CASCADE_PATH = "haarcascade_frontalface_default.xml"
 
 # create haar cascade from xml file
-face_cascade = cv2.CascadeClassifier(face_cascade_path)
+face_cascade = cv2.CascadeClassifier(FACE_CASCADE_PATH)
 
 # set video source to default webcam
 # note that you could also provide a filename here, but would need
