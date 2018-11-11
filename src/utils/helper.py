@@ -1,4 +1,4 @@
-# Taken from https://github.com/oarriaga/face_classification
+# Functions below were taken from https://github.com/oarriaga/face_classification
 
 def apply_offsets(face_coordinates, offsets):
     x, y, width, height = face_coordinates
