@@ -1,6 +1,10 @@
 # Identifying Facial Expressions using Machine Learning
 
-# Instructions
+<img src="./res/img/sample.png" width=450>
+
+## Instructions
+
+#### Using Docker
 
 1. `make build`: Ensure that you have the right docker image.
 
@@ -8,7 +12,13 @@
 
 3. `q`: Quit the program.
 
-# Dataset
+#### Using Python and dependencies
+
+1. Make sure all dependencies are installed (listed in `./res/docker/requirements.txt`).
+
+2. `python ./src/run.py`
+
+## Dataset
 
 [Challenges in Representation Learning: Facial Expression Recognition Challenge](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data)
 
@@ -30,7 +40,7 @@ Total samples: 32,298
 * Training: 28,709 samples.
 * Testing: 3,589
 
-# Credit and Resources
+## Credit and Resources
 
 * [Face Recognition with Python, in Under 25 Lines of Code](
 https://realpython.com/face-recognition-with-python/)

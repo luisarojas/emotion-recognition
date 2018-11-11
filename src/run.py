@@ -71,26 +71,28 @@ if __name__ == "__main__":
 
             # get label text corresponding to the number returned by the model
             emotion_percentage_text = "{:.0f}%".format(emotion_percentage * 100)
-            # emotion_text = EMOTION_LABELS[emotion_code] + ": " + emotion_percentage_text # not displaying percentages anymore
-            emotion_text = EMOTION_LABELS[emotion_code]
+            emotion_text = EMOTION_LABELS[emotion_code] + ": " + emotion_percentage_text # displays percentages
+            # emotion_text = EMOTION_LABELS[emotion_code]
             text_color = (0, 255, 0)
-            x, y = face_coords[:2]
             font_scale = 1
             font_thickness = 2
 
-            # draw box around face
+            # box characteristics
             box_color = (0, 255, 0)
             box_thickness = 2
-            for (x, y, w, h) in faces:
-                cv2.rectangle(frame, (x, y), (x+w, y+h), box_color, box_thickness)
-                cv2.putText(frame, emotion_text, (x, y - 10), font, font_scale, text_color, font_thickness, cv2.LINE_AA)
 
+            # draw box around face, as well as labels
+            x, y, w, h = face_coords
+            cv2.rectangle(frame, (x, y), (x+w, y+h), box_color, box_thickness)
+            cv2.putText(frame, emotion_text, (x, y - 10), font, font_scale, text_color, font_thickness, cv2.LINE_AA)
 
+        # display current frame
         cv2.imshow('Video', frame)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+        # quit the program if the key 'q' is pressed
+        if cv2.waitKey(1) & 0xFF == ord('q'): break
 
+    # clean up
     video_capture.release()
     print("Closing camera...")
     cv2.destroyAllWindows()
