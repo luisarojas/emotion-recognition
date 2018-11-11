@@ -8,9 +8,7 @@
 
 3. `q`: Quit the program.
 
-# Datasets
-
-#### Emotions
+# Dataset
 
 [Challenges in Representation Learning: Facial Expression Recognition Challenge](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data)
 
@@ -31,16 +29,6 @@ This dataset consists 48x48 pixel grayscale images of faces.
 Total samples: 32,298
 * Training: 28,709 samples.
 * Testing: 3,589
-
-#### Gender
-
-[The IMDB-WIKI dataset
-](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/) *("Download faces only (7 GB)" under IMDB.)*
-
-| Gender | Code |
-|--------|------|
-| Woman  | 0    |
-| Men    | 1    |
 
 # OpenCV tutorials used:
 * [Face Recognition with Python, in Under 25 Lines of Code]( https://realpython.com/face-recognition-with-python/)
