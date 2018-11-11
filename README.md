@@ -1,7 +1,7 @@
 # Identifying Facial Expressions using Machine Learning
 
 # Instructions
-1. Ensure that you have the right docker image `make docker-build` (Only need to do this once)
+1. Ensure that you have the right docker image `make build` (only need to do this once)
 2. `make`
 
 ### OpenCV tutorials used:

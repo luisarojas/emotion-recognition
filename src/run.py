@@ -92,22 +92,26 @@ if __name__ == "__main__":
             gender_code = np.argmax(gender_prediciton)
             gender_percentage = np.max(gender_prediciton)
 
+            # --- draw rectangles and text around faces found ---
+
+            # get label text corresponding to the number returned by the model
+            emotion_percentage_text = "{:.0f}%".format(emotion_percentage * 100)
+            gender_percentage_text = "{:.0f}%".format(gender_percentage * 100)
+            emotion_text = EMOTION_LABELS[emotion_code] + ": " + emotion_percentage_text
+            gender_text =  GENDER_LABELS[gender_code] + ": " + gender_percentage_text
+            text_color = (0, 255, 0)
+            x, y = face_coords[:2]
+            font_scale = 1
+            font_thickness = 2
+
             # draw box around face
             box_color = (0, 255, 0)
             box_thickness = 2
             for (x, y, w, h) in faces:
                 cv2.rectangle(frame, (x, y), (x+w, y+h), box_color, box_thickness)
+                cv2.putText(frame, emotion_text, (x, y - 10), font, font_scale, text_color, font_thickness, cv2.LINE_AA)
+                cv2.putText(frame, gender_text, (x, y + h + 25), font, font_scale, text_color, font_thickness, cv2.LINE_AA)
 
-            # draw text around face
-            # get label text corresponding to the number returned by the model
-            emotion_percentage_text = "{:.0f}%".format(emotion_percentage * 100)
-            gender_percentage_text = "{:.0f}%".format(gender_percentage * 100)
-            text = EMOTION_LABELS[emotion_code] + ": " + emotion_percentage_text + ", " + GENDER_LABELS[gender_code] + ": " + gender_percentage_text
-            text_color = (0, 255, 0)
-            x, y = face_coords[:2]
-            font_scale = 1
-            font_thickness = 2
-            cv2.putText(frame, text, (x, y - 10), font, font_scale, text_color, font_thickness, cv2.LINE_AA)
 
         cv2.imshow('Video', frame)
 

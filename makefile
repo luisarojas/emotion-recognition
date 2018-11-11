@@ -2,14 +2,6 @@ FILE=./src/run.py
 DATA=/tmp/data/
 DOCKER_IMAGE=keras-opencv:latest
 
-	# volume path
-	# current work
-	 # setting home directory ("WORKDIR")
-	# mount web camera device
-	# ability to display, from host to container
-	# file needed for display
-	# name of image to create container from
-	# run the main python script
 run:
 	@docker run -it --rm \
 	-v $(DATA):/data \
