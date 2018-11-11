@@ -4,15 +4,11 @@
 1. Ensure that you have the right docker image `make build` (only need to do this once)
 2. `make`
 
-### OpenCV tutorials used:
-* [Face Recognition with Python, in Under 25 Lines of Code]( https://realpython.com/face-recognition-with-python/)
-* [Face Detection in Python Using a Webcam](https://realpython.com/face-detection-in-python-using-a-webcam/)
-* [Face Detection using Haar Cascades
-](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_objdetect/py_face_detection/py_face_detection.html)
-* [Emotion GitHub repository](https://github.com/petercunha/Emotion) by [petercunha](https://github.com/petercunha)
-* [Face classification GitHub repository](https://github.com/oarriaga/face_classification) by [oarriaga](https://github.com/oarriaga)
 
-### Dataset
+
+## Datasets
+
+#### Emotions
 
 [Challenges in Representation Learning: Facial Expression Recognition Challenge](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data)
 
@@ -34,11 +30,20 @@ Total samples: 32,298
 * Training: 28,709 samples.
 * Testing: 3,589
 
----
-<font size="1">
-Other data resources:<br>
-- Emotions: [This](https://github.com/muxspace/facial_expressions) public GitHub repository.
-<br>
-- Gender:
-[Here](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/), "Download faces only (7 GB)" under IMDB.
-</font>
+#### Gender
+
+[The IMDB-WIKI dataset
+](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/) *("Download faces only (7 GB)" under IMDB.)*
+
+| Gender | Code |
+|--------|------|
+| Woman  | 0    |
+| Men    | 1    |
+
+## OpenCV tutorials used:
+* [Face Recognition with Python, in Under 25 Lines of Code]( https://realpython.com/face-recognition-with-python/)
+* [Face Detection in Python Using a Webcam](https://realpython.com/face-detection-in-python-using-a-webcam/)
+* [Face Detection using Haar Cascades
+](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_objdetect/py_face_detection/py_face_detection.html)
+* [Emotion GitHub repository](https://github.com/petercunha/Emotion) by [petercunha](https://github.com/petercunha)
+* [Face classification GitHub repository](https://github.com/oarriaga/face_classification) by [oarriaga](https://github.com/oarriaga)
