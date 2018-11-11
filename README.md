@@ -6,7 +6,7 @@
 
 2. `make`
 
-## Datasets
+# Datasets
 
 #### Emotions
 
@@ -40,7 +40,7 @@ Total samples: 32,298
 | Woman  | 0    |
 | Men    | 1    |
 
-## OpenCV tutorials used:
+# OpenCV tutorials used:
 * [Face Recognition with Python, in Under 25 Lines of Code]( https://realpython.com/face-recognition-with-python/)
 * [Face Detection in Python Using a Webcam](https://realpython.com/face-detection-in-python-using-a-webcam/)
 * [Face Detection using Haar Cascades
