@@ -4,28 +4,22 @@ import cv2
 from keras.models import load_model
 from utils.helper import apply_offsets,preprocess_input
 
-EMOTION_WEIGHTS = "./res/saved_weights/emotion_model_weights.hdf5"
-GENDER_WEIGHTS = "./res/saved_weights/gender_model_weights.hdf5"
+EMOTION_WEIGHTS = "./res/trained_weights/emotion_model_weights.hdf5"
+EMOTION_LABELS = {0:'angry', 1:'disgust', 2:'fear', 3:'happy', 4:'sad', 5:'surprise', 6:'neutral'}
 
 HAAR_CASCADE="./res/opencv/casc/haarcascade_frontalface_default.xml"
-
-EMOTION_LABELS = {0:'angry', 1:'disgust', 2:'fear', 3:'happy', 4:'sad', 5:'surprise', 6:'neutral'}
-GENDER_LABELS = {0:'woman', 1:'man'}
 
 if __name__ == "__main__":
 
     # OPEN CV2 INIT
     font = cv2.FONT_HERSHEY_SIMPLEX # font to use in output text
     emotion_offsets = (0,0) # set for drawing bounding boxes
-    # gender_offsets = (10,10) # set for drawing bounding boxes
     face_detection = cv2.CascadeClassifier(HAAR_CASCADE)
 
     # load the trained model from keras, and use the given weights
     emotion_classifier = load_model(EMOTION_WEIGHTS, compile=False)
-    gender_classifier = load_model(GENDER_WEIGHTS, compile=False)
 
     emotion_target_size = emotion_classifier.input_shape[1:3]
-    gender_target_size = gender_classifier.input_shape[1:3]
 
     video_capture = cv2.VideoCapture(0)
     print("Opening camera...")
@@ -61,18 +55,11 @@ if __name__ == "__main__":
             # Obtain the coordinates from each face to extract them from original image
             x1, x2, y1, y2 = apply_offsets(face_coords, emotion_offsets)
             gray_face = gray_image[y1:y2, x1:x2]
-            # x1, x2, y1, y2 = apply_offsets(face_coords, gender_offsets)
-            # rgb_face = rgb_image[y1:y2, x1:x2]
-            # Attempt to resize the face to what the model expects
+
             try:
                 gray_face = cv2.resize(gray_face, (emotion_target_size))
             except:
                 print("Unable to resize gray image.")
-
-            # try:
-            #     rgb_face = cv2.resize(rgb_face, (gender_target_size))
-            # except Exception as e:
-            #     print("Unable to resize rgb image: " + e)
 
             gray_face = preprocess_input(gray_face, True)
             gray_face = np.expand_dims(gray_face, 0)
@@ -83,22 +70,17 @@ if __name__ == "__main__":
 
             # classify current face
             emotion_prediciton = emotion_classifier.predict(gray_face)
-            gender_prediciton = gender_classifier.predict(gray_face)
 
             # get percentages for each label
             emotion_code = np.argmax(emotion_prediciton)
             emotion_percentage = np.max(emotion_prediciton)
 
-            gender_code = np.argmax(gender_prediciton)
-            gender_percentage = np.max(gender_prediciton)
-
             # --- draw rectangles and text around faces found ---
 
             # get label text corresponding to the number returned by the model
             emotion_percentage_text = "{:.0f}%".format(emotion_percentage * 100)
-            gender_percentage_text = "{:.0f}%".format(gender_percentage * 100)
-            emotion_text = EMOTION_LABELS[emotion_code] + ": " + emotion_percentage_text
-            gender_text =  GENDER_LABELS[gender_code] + ": " + gender_percentage_text
+            # emotion_text = EMOTION_LABELS[emotion_code] + ": " + emotion_percentage_text # not displaying percentages anymore
+            emotion_text = EMOTION_LABELS[emotion_code]
             text_color = (0, 255, 0)
             x, y = face_coords[:2]
             font_scale = 1
@@ -110,7 +92,6 @@ if __name__ == "__main__":
             for (x, y, w, h) in faces:
                 cv2.rectangle(frame, (x, y), (x+w, y+h), box_color, box_thickness)
                 cv2.putText(frame, emotion_text, (x, y - 10), font, font_scale, text_color, font_thickness, cv2.LINE_AA)
-                cv2.putText(frame, gender_text, (x, y + h + 25), font, font_scale, text_color, font_thickness, cv2.LINE_AA)
 
 
         cv2.imshow('Video', frame)

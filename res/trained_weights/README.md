@@ -1,0 +1,1 @@
+These trained weights were taken from:  https://github.com/oarriaga/face_classification

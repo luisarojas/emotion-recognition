@@ -2,9 +2,11 @@
 
 # Instructions
 
-1. Ensure that you have the right docker image `make build` (only need to do this once)
+1. `make build`: Ensure that you have the right docker image.
 
-2. `make`
+2. `make`: Run the container.
+
+3. `q`: Quit the program.
 
 # Datasets
 
