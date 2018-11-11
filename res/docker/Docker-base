@@ -1,0 +1,11 @@
+FROM valian/docker-python-opencv-ffmpeg
+
+RUN apt-get update
+RUN apt update && apt install -y libsm6 libxext6 libxrender1 libfontconfig1
+RUN pip install --upgrade pip
+RUN pip install tensorflow
+RUN pip install keras
+RUN pip install opencv-python
+RUN pip install pandas
+RUN pip install matplotlib
+RUN pip install Pillow
