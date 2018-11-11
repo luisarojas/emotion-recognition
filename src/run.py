@@ -68,7 +68,7 @@ if __name__ == "__main__":
             emotion_percentage = np.max(emotion_prediciton)
 
             # --- draw rectangles and text around faces found ---
-            
+
             # get label text corresponding to the number returned by the model
             emotion_percentage_text = "{:.0f}%".format(emotion_percentage * 100)
             # emotion_text = EMOTION_LABELS[emotion_code] + ": " + emotion_percentage_text # not displaying percentages anymore
