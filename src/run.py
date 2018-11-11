@@ -11,9 +11,8 @@ HAAR_CASCADE="./res/opencv/casc/haarcascade_frontalface_default.xml"
 
 if __name__ == "__main__":
 
-    # OPEN CV2 INIT
     font = cv2.FONT_HERSHEY_SIMPLEX # font to use in output text
-    emotion_offsets = (0,0) # set for drawing bounding boxes
+    emotion_offsets = (0, 0) # set for drawing bounding boxes
     face_detection = cv2.CascadeClassifier(HAAR_CASCADE)
 
     # load the trained model from keras, and use the given weights
@@ -27,7 +26,7 @@ if __name__ == "__main__":
     while True:
 
         if not video_capture.isOpened():
-            print("Unable to open camera.")
+            print("ERROR: Unable to open camera.")
             break
 
         ret, frame = video_capture.read()
@@ -36,10 +35,6 @@ if __name__ == "__main__":
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         gray_image = np.squeeze(gray)
         gray_image = gray_image.astype('uint8')
-
-        # rgb_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        # rgb_image = np.squeeze(rgb_image)
-        # rgb_image = rgb_image.astype('uint8')
 
         #Get the faces from the image
         faces = face_detection.detectMultiScale(
@@ -59,14 +54,11 @@ if __name__ == "__main__":
             try:
                 gray_face = cv2.resize(gray_face, (emotion_target_size))
             except:
-                print("Unable to resize gray image.")
+                print("ERROR: Unable to resize image.")
 
             gray_face = preprocess_input(gray_face, True)
             gray_face = np.expand_dims(gray_face, 0)
             gray_face = np.expand_dims(gray_face, -1)
-
-            # rgb_face = preprocess_input(rgb_face, False)
-            # rgb_face = np.expand_dims(rgb_face, 0)
 
             # classify current face
             emotion_prediciton = emotion_classifier.predict(gray_face)
@@ -76,7 +68,7 @@ if __name__ == "__main__":
             emotion_percentage = np.max(emotion_prediciton)
 
             # --- draw rectangles and text around faces found ---
-
+            
             # get label text corresponding to the number returned by the model
             emotion_percentage_text = "{:.0f}%".format(emotion_percentage * 100)
             # emotion_text = EMOTION_LABELS[emotion_code] + ": " + emotion_percentage_text # not displaying percentages anymore
