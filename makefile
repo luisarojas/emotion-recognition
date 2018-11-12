@@ -13,6 +13,7 @@ run:
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	$(DOCKER_IMAGE) \
 	python $(FILE)
+	xhost -
 
 build:
 	docker build -t $(DOCKER_IMAGE) \
