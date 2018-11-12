@@ -3,6 +3,7 @@ DATA=/tmp/data/
 DOCKER_IMAGE=keras-opencv:latest
 
 run:
+	xhost +
 	docker run -it --rm \
 	-v $(DATA):/data \
 	-v $(PWD):/home/work \
